@@ -102,17 +102,17 @@
       <!-- CPR -->
       <div>
         <h3>CPR (Cardiac Arrest)</h3>
-        <iframe src="https://www.youtube.com/embed/0o9PpRIl8hM" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
       </div>
       <!-- Burns -->
       <div>
         <h3>Burns</h3>
-        <iframe src="https://www.youtube.com/embed/xX4Y7i6ZkJg" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
       </div>
       <!-- Cuts & Bleeding -->
       <div>
         <h3>Cuts & Bleeding</h3>
-        <iframe src="https://www.youtube.com/embed/CEkC7C0cI9M" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
       </div>
       <!-- Choking -->
       <div>
@@ -149,6 +149,29 @@
       </tr>
     </table>
   </section>
+
+  <section id="pharmacy">
+    <h2>Find Nearest Pharmacy</h2>
+    <p>Enter your location to find pharmacies nearby:</p>
+    <input type="text" id="locationInput" placeholder="Enter your area or city" style="padding:10px; width:70%; max-width:400px;">
+    <button onclick="searchPharmacy()" style="padding:10px 15px; background:#27ae60; color:white; border:none; border-radius:5px; cursor:pointer;">
+      Search
+    </button>
+    <br><br>
+    <iframe id="mapFrame" width="100%" height="400" style="border:0; border-radius:8px;" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <script>
+    function searchPharmacy() {
+      let location = document.getElementById("locationInput").value;
+      if(location.trim() === "") {
+        alert("Please enter your location.");
+        return;
+      }
+      let mapSrc = "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
+      document.getElementById("mapFrame").src = mapSrc;
+    }
+  </script>
 
   <!-- FAQ Section -->
   <section id="faq">
