@@ -5,201 +5,303 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>READ THE ROOM - प्राथमिक उपचार जागरूकता</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f5f7fa;
-      color: #333;
-    }
-    header {
-      background: #2c3e50;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
+      font-family: "Roboto", Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
     }
-    nav a {
-      color: white;
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #181818;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding-top: 80px;
+      border-right: 1px solid #303030;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 15px 25px;
       text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .sidebar a:hover {
+      background-color: #272727;
+    }
+
+    /* Topbar */
+    .topbar {
+      width: 100%;
+      background-color: #202020;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 60px;
+      z-index: 10;
+      border-bottom: 1px solid #303030;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 18px;
       font-weight: bold;
     }
+
+    .logo img {
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .search-bar {
+      display: flex;
+      width: 50%;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 2px 0 0 2px;
+      background: #121212;
+      color: white;
+    }
+
+    .search-bar button {
+      padding: 8px 15px;
+      border: none;
+      background-color: #ff0000;
+      color: white;
+      border-radius: 0 2px 2px 0;
+      cursor: pointer;
+    }
+
+    .right-icons {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .right-icons button {
+      background: #ff0000;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    main {
+      margin-left: 220px;
+      padding: 80px 40px;
+      width: 100%;
+    }
+
     section {
-      padding: 40px;
-      max-width: 1000px;
-      margin: auto;
+      margin-bottom: 50px;
     }
+
     h2 {
-      color: #2c3e50;
-      margin-bottom: 20px;
+      color: #fff;
+      margin-bottom: 15px;
+      border-left: 4px solid #ff0000;
+      padding-left: 10px;
     }
+
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
+
     iframe {
       width: 100%;
       height: 200px;
-      border-radius: 8px;
+      border-radius: 10px;
+      border: none;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 15px;
     }
     th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
+      border: 1px solid #333;
+      padding: 10px;
       text-align: left;
     }
     th {
-      background: #34495e;
-      color: white;
+      background-color: #ff0000;
+      color: #fff;
     }
-    .faq-link {
+
+    input[type="text"] {
+      padding: 10px;
+      width: 70%;
+      max-width: 400px;
+      background-color: #121212;
+      border: 1px solid #333;
+      color: white;
+      border-radius: 5px;
+    }
+
+    button.search {
+      padding: 10px 15px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .faq-link, .survey-link {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #3498db;
+      padding: 10px 15px;
+      background-color: #ff0000;
       color: white;
+      border-radius: 5px;
       text-decoration: none;
-      border-radius: 6px;
+      margin-top: 10px;
     }
-    .faq-link:hover {
-      background: #2980b9;
-    }
+
     footer {
-      background: #2c3e50;
-      color: white;
       text-align: center;
       padding: 15px;
-      margin-top: 30px;
+      background-color: #181818;
+      color: #aaa;
+      border-top: 1px solid #303030;
+    }
+
+    iframe#mapFrame {
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="logo.png" alt="READ THE ROOM Logo" style="max-height:80px;">
-  <p>प्राथमिक उपचार जागरूकता एवं त्वरित चिकित्सा सहायता</p>
-  <nav>
-    <a href="#videos">प्राथमिक उपचार वीडियो</a>
-    <a href="#delivery">डिलीवरी बॉय</a>
-    <a href="#pharmacy">फार्मेसी खोजें</a>
-    <a href="#faq">सामान्य प्रश्न</a>
-     <button onclick="window.location.href='index.html'" 
-        style="margin-top:15px; padding:10px 20px; background:#f39c12; color:white; border:none; border-radius:6px; cursor:pointer;">
-  View in English
-</button>
-  </nav>
-</header>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="#videos">📺 प्राथमिक उपचार वीडियो</a>
+    <a href="#delivery">🚴‍♂️ डिलीवरी बॉय</a>
+    <a href="#pharmacy">💊 फार्मेसी खोजें</a>
+    <a href="#faq">❓ सामान्य प्रश्न</a>
+    <a href="#survey">📝 सर्वेक्षण</a>
+  </div>
 
-<!-- Video Section -->
-<section id="videos">
-  <h2>प्राथमिक उपचार वीडियो लाइब्रेरी</h2>
-  <p>आपातकालीन स्थिति में इन गाइड्स से सीखें:</p>
-  <div class="video-grid">
-    <div>
-      <h3>सीपीआर (हृदय गति रुकना)</h3>
-      <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+      READ THE ROOM
     </div>
-    <div>
-      <h3>जलना (Burns)</h3>
-      <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
+    <div class="search-bar">
+      <input type="text" placeholder="वीडियो या सहायता खोजें...">
+      <button>🔍</button>
     </div>
-    <div>
-      <h3>कटना और खून बहना</h3>
-      <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
-    </div>
-    <div>
-      <h3>दम घुटना</h3>
-      <iframe src="https://www.youtube.com/embed/PA9hpOnvtCk" allowfullscreen></iframe>
-    </div>
-    <div>
-      <h3>दौरे (Seizures)</h3>
-      <iframe src="https://www.youtube.com/embed/owXhSD7XwUk" allowfullscreen></iframe>
-    </div>
-    <div>
-      <h3>नाक से खून आना</h3>
-      <iframe src="https://www.youtube.com/embed/PmmhxW0vVXA" allowfullscreen></iframe>
+    <div class="right-icons">
+      <button onclick="window.location.href='index.html'">English</button>
     </div>
   </div>
-</section>
 
-<!-- Delivery Contacts Section -->
-<section id="delivery">
-  <h2>नज़दीकी दवाई डिलीवरी बॉय</h2>
-  <p>इनसे संपर्क करें और दवाई या मेडिकल उपकरण मंगवाएँ:</p>
-  <table>
-    <tr>
-      <th>नाम</th>
-      <th>फ़ोन</th>
-      <th>क्षेत्र</th>
-    </tr>
-    <tr>
-      <td>रोहित शर्मा</td>
-      <td><a href="tel:+917717581632">+91 77175 81632</a></td>
-      <td>सेक्टर 33, चंडीगढ़</td>
-    </tr>
-    <tr>
-      <td>अमन वर्मा</td>
-      <td><a href="tel:+918288892288">+91 82888 92288</a></td>
-      <td>सेक्टर 22, चंडीगढ़</td>
-    </tr>
-    <tr>
-      <td>संदीप सिंह</td>
-      <td><a href="tel:+919149979837">+91 91499 79837</a></td>
-      <td>सेक्टर 40, चंडीगढ़</td>
-    </tr>
-  </table>
-</section>
+  <!-- Main Content -->
+  <main>
 
-<section id="pharmacy">
-  <h2>नज़दीकी फार्मेसी खोजें</h2>
-  <p>अपना स्थान दर्ज करें और नज़दीकी फार्मेसी देखें:</p>
-  <input type="text" id="locationInput" placeholder="अपना क्षेत्र या शहर दर्ज करें" style="padding:10px; width:70%; max-width:400px;">
-  <button onclick="searchPharmacy()" style="padding:10px 15px; background:#27ae60; color:white; border:none; border-radius:5px; cursor:pointer;">
-    खोजें
-  </button>
-  <br><br>
-  <iframe id="mapFrame" width="100%" height="400" style="border:0; border-radius:8px;" allowfullscreen="" loading="lazy"></iframe>
-</section>
+    <section id="videos">
+      <h2>प्राथमिक उपचार वीडियो लाइब्रेरी</h2>
+      <p>आपातकालीन स्थिति में इन गाइड्स से सीखें:</p>
+      <div class="video-grid">
+        <div>
+          <h3>सीपीआर (हृदय गति रुकना)</h3>
+          <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
+        </div>
+        <div>
+          <h3>जलना (Burns)</h3>
+          <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
+        </div>
+        <div>
+          <h3>कटना और खून बहना</h3>
+          <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
+        </div>
+        <div>
+          <h3>दम घुटना</h3>
+          <iframe src="https://www.youtube.com/embed/PA9hpOnvtCk" allowfullscreen></iframe>
+        </div>
+        <div>
+          <h3>दौरे (Seizures)</h3>
+          <iframe src="https://www.youtube.com/embed/owXhSD7XwUk" allowfullscreen></iframe>
+        </div>
+        <div>
+          <h3>नाक से खून आना</h3>
+          <iframe src="https://www.youtube.com/embed/PmmhxW0vVXA" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
 
-<script>
-  function searchPharmacy() {
-    let location = document.getElementById("locationInput").value;
-    if(location.trim() === "") {
-      alert("कृपया अपना स्थान दर्ज करें।");
-      return;
-    }
-    let mapSrc = "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
-    document.getElementById("mapFrame").src = mapSrc;
-  }
-</script>
+    <section id="delivery">
+      <h2>नज़दीकी दवाई डिलीवरी बॉय</h2>
+      <table>
+        <tr><th>नाम</th><th>फ़ोन</th><th>क्षेत्र</th></tr>
+        <tr><td>रोहित शर्मा</td><td><a href="tel:+917717581632">+91 77175 81632</a></td><td>सेक्टर 33, चंडीगढ़</td></tr>
+        <tr><td>अमन वर्मा</td><td><a href="tel:+918288892288">+91 82888 92288</a></td><td>सेक्टर 22, चंडीगढ़</td></tr>
+        <tr><td>संदीप सिंह</td><td><a href="tel:+919149979837">+91 91499 79837</a></td><td>सेक्टर 40, चंडीगढ़</td></tr>
+      </table>
+    </section>
 
-<!-- FAQ Section -->
-<section id="faq">
-  <h2>कोई प्रश्न है?</h2>
-  <p>अपने सवाल पूछें, और हम उन्हें अपने ब्लॉग पर उत्तर देंगे।</p>
-  <a class="faq-link" href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">प्रश्न पूछें</a>
-</section>
-  
-   <!-- Survey Section -->
-  <section id="survey">
-    <h2>हमारे सर्वेक्षण में भाग लें</h2>
-    <p>हम आपको बेहतर जानना चाहते हैं।</p>
-    <a class="survey-link" href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">
-READ THE ROOM का हिस्सा बनें</a>
-  </section>
+    <section id="pharmacy">
+      <h2>नज़दीकी फार्मेसी खोजें</h2>
+      <input type="text" id="locationInput" placeholder="अपना क्षेत्र या शहर दर्ज करें">
+      <button class="search" onclick="searchPharmacy()">खोजें</button>
+      <br><br>
+      <iframe id="mapFrame" width="100%" height="400" loading="lazy"></iframe>
+    </section>
 
-<footer>
-  <p>© 2025 पढ़ो और समझो | प्राथमिक उपचार जागरूकता के लिए बनाया गया</p>
-</footer>
+    <script>
+      function searchPharmacy() {
+        let location = document.getElementById("locationInput").value;
+        if(location.trim() === "") {
+          alert("कृपया अपना स्थान दर्ज करें।");
+          return;
+        }
+        let mapSrc = "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
+        document.getElementById("mapFrame").src = mapSrc;
+      }
+    </script>
+
+    <section id="faq">
+      <h2>कोई प्रश्न है?</h2>
+      <p>अपने सवाल पूछें, और हम उन्हें अपने ब्लॉग पर उत्तर देंगे।</p>
+      <a class="faq-link" href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">प्रश्न पूछें</a>
+    </section>
+
+    <section id="survey">
+      <h2>हमारे सर्वेक्षण में भाग लें</h2>
+      <p>हम आपको बेहतर जानना चाहते हैं।</p>
+      <a class="survey-link" href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">READ THE ROOM का हिस्सा बनें</a>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 पढ़ो और समझो | प्राथमिक उपचार जागरूकता के लिए बनाया गया
+  </footer>
 
 </body>
 </html>
