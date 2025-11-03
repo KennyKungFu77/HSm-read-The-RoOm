@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>READ THE ROOM - First Aid Awareness</title>
+  <style>
+    /* ======== GENERAL STYLES ======== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: #f1f1f1;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    /* ======== TOP NAVBAR ======== */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #202020;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      width: 50%;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #303030;
+      background-color: #121212;
+      color: #fff;
+      border-radius: 2px 0 0 2px;
+    }
+
+    .search-bar button {
+      background-color: #303030;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background-color: #383838;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .nav-icons span {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* ======== SIDEBAR ======== */
+    .sidebar {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 220px;
+      background-color: #202020;
+      height: 100vh;
+      padding-top: 20px;
+      overflow-y: auto;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 12px 25px;
+      color: #f1f1f1;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover {
+      background-color: #383838;
+    }
+
+    /* ======== MAIN CONTENT ======== */
+    main {
+      margin-left: 240px;
+      padding: 20px;
+    }
+
+    /* ======== VIDEO GRID ======== */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .video-card {
+      background-color: #181818;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    }
+
+    iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+    }
+
+    .video-info {
+      padding: 10px;
+    }
+
+    .video-info h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    /* ======== TABLE ======== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #181818;
+      margin-top: 15px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border-bottom: 1px solid #303030;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #202020;
+    }
+
+    /* ======== PHARMACY SEARCH ======== */
+    input[type="text"] {
+      padding: 10px;
+      background-color: #121212;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 4px;
+      width: 60%;
+    }
+
+    button {
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff0000;
+    }
+
+    iframe#mapFrame {
+      border: none;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    /* ======== FOOTER ======== */
+    footer {
+      background-color: #202020;
+      color: #ccc;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <img src="logo.png" alt="READ THE ROOM">
+      <h2 style="margin: 0; color: #fff;">READ THE ROOM</h2>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search first-aid topics...">
+      <button>🔍</button>
+    </div>
+
+    <div class="nav-icons">
+      <span>📹</span>
+      <span>🔔</span>
+      <span>👤</span>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <a href="#videos">🏠 Home</a>
+    <a href="#delivery">🚴 Delivery Boys</a>
+    <a href="#pharmacy">💊 Pharmacy Finder</a>
+    <a href="#faq">❓ FAQs</a>
+    <a href="#survey">📝 Survey</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section id="videos">
+      <h2>First-Aid Video Library</h2>
+      <p>Learn how to act in emergencies with these quick guides:</p>
+
+      <div class="video-grid">
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
+          <div class="video-info"><h3>CPR (Cardiac Arrest)</h3></div>
+        </div>
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
+          <div class="video-info"><h3>Burns</h3></div>
+        </div>
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
+          <div class="video-info"><h3>Cuts & Bleeding</h3></div>
+        </div>
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/PA9hpOnvtCk" allowfullscreen></iframe>
+          <div class="video-info"><h3>Choking</h3></div>
+        </div>
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/owXhSD7XwUk" allowfullscreen></iframe>
+          <div class="video-info"><h3>Seizures</h3></div>
+        </div>
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/PmmhxW0vVXA" allowfullscreen></iframe>
+          <div class="video-info"><h3>Nosebleeds</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="delivery">
+      <h2>Nearby Pharmaceutical Delivery Boys</h2>
+      <p>Contact them to fetch medicines or medical equipment:</p>
+      <table>
+        <tr><th>Name</th><th>Phone</th><th>Area</th></tr>
+        <tr><td>Rohit Sharma</td><td><a href="tel:+917717581632">+91 77175 81632</a></td><td>Sector 33, Chandigarh</td></tr>
+        <tr><td>Aman Verma</td><td><a href="tel:+918288892288">+91 82888 92288</a></td><td>Sector 22, Chandigarh</td></tr>
+        <tr><td>Sandeep Singh</td><td><a href="tel:+919149979837">+91 91499 79837</a></td><td>Sector 40, Chandigarh</td></tr>
+      </table>
+    </section>
+
+    <section id="pharmacy">
+      <h2>Find Nearest Pharmacy</h2>
+      <input type="text" id="locationInput" placeholder="Enter your area or city">
+      <button onclick="searchPharmacy()">Search</button>
+      <iframe id="mapFrame" width="100%" height="400" loading="lazy"></iframe>
+    </section>
+
+    <section id="faq">
+      <h2>Have Questions?</h2>
+      <a href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">
+        <button>Ask a Question</button>
+      </a>
+    </section>
+
+    <section id="survey">
+      <h2>Take Part in Our Survey</h2>
+      <a href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">
+        <button>Be a part of READ THE ROOM</button>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 READ THE ROOM | Created for First-Aid Awareness</p>
+  </footer>
+
+  <script>
+    function searchPharmacy() {
+      let location = document.getElementById("locationInput").value;
+      if(location.trim() === "") {
+        alert("Please enter your location.");
+        return;
+      }
+      let mapSrc = "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
+      document.getElementById("mapFrame").src = mapSrc;
+    }
+  </script>
+
+</body>
+</html>
