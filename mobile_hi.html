@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>READ THE ROOM - मोबाइल</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Roboto", Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: #f1f1f1;
+    }
+
+    header {
+      background-color: #202020;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #333;
+    }
+
+    header img {
+      height: 35px;
+    }
+
+    .menu-btn {
+      font-size: 22px;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .lang-btn {
+      background-color: #cc0000;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      padding: 8px 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav {
+      display: none;
+      flex-direction: column;
+      background-color: #181818;
+      border-bottom: 1px solid #333;
+    }
+
+    nav a {
+      color: #fff;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-top: 1px solid #222;
+    }
+
+    nav a:hover {
+      background-color: #333;
+    }
+
+    .content {
+      padding: 15px;
+    }
+
+    h2 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .video-card {
+      margin-bottom: 20px;
+    }
+
+    .video-card h3 {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #272727;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+
+    a {
+      color: #00bfff;
+    }
+
+    button, .faq-link, .survey-link {
+      background-color: #cc0000;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    button:hover, .faq-link:hover, .survey-link:hover {
+      background-color: #ff0000;
+    }
+
+    footer {
+      text-align: center;
+      background: #181818;
+      color: #999;
+      padding: 15px;
+      font-size: 13px;
+      margin-top: 40px;
+    }
+
+    .show {
+      display: flex;
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileNav").classList.toggle("show");
+    }
+
+    function searchPharmacy() {
+      const location = document.getElementById("locationInput").value.trim();
+      if (!location) {
+        alert("कृपया अपना स्थान दर्ज करें।");
+        return;
+      }
+      document.getElementById("mapFrame").src =
+        "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <img src="logo.png" alt="READ THE ROOM Logo">
+    <button class="lang-btn" onclick="window.location.href='mobile.html'">English</button>
+  </header>
+
+  <nav id="mobileNav">
+    <a href="#videos" onclick="toggleMenu()">प्राथमिक चिकित्सा वीडियो</a>
+    <a href="#delivery" onclick="toggleMenu()">डिलीवरी बॉय</a>
+    <a href="#pharmacy" onclick="toggleMenu()">फार्मेसी खोजें</a>
+    <a href="#faq" onclick="toggleMenu()">सामान्य प्रश्न</a>
+    <a href="#survey" onclick="toggleMenu()">सर्वेक्षण</a>
+  </nav>
+
+  <div class="content">
+    <section id="videos">
+      <h2>प्राथमिक चिकित्सा वीडियो</h2>
+      <p>आपात स्थिति में क्या करना है, ये सीखें:</p>
+
+      <div class="video-card">
+        <h3>सीपीआर (हृदय गति रुकना)</h3>
+        <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
+      </div>
+      <div class="video-card">
+        <h3>जलना</h3>
+        <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
+      </div>
+      <div class="video-card">
+        <h3>कट और रक्तस्राव</h3>
+        <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
+      </div>
+      <div class="video-card">
+        <h3>घुटन</h3>
+        <iframe src="https://www.youtube.com/embed/PA9hpOnvtCk" allowfullscreen></iframe>
+      </div>
+      <div class="video-card">
+        <h3>मिर्गी</h3>
+        <iframe src="https://www.youtube.com/embed/owXhSD7XwUk" allowfullscreen></iframe>
+      </div>
+      <div class="video-card">
+        <h3>नाक से खून आना</h3>
+        <iframe src="https://www.youtube.com/embed/PmmhxW0vVXA" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="delivery">
+      <h2>नज़दीकी डिलीवरी बॉय</h2>
+      <table>
+        <tr><th>नाम</th><th>फोन</th><th>क्षेत्र</th></tr>
+        <tr><td>रोहित शर्मा</td><td><a href="tel:+917717581632">+91 77175 81632</a></td><td>सेक्टर 33</td></tr>
+        <tr><td>अमन वर्मा</td><td><a href="tel:+918288892288">+91 82888 92288</a></td><td>सेक्टर 22</td></tr>
+        <tr><td>संदीप सिंह</td><td><a href="tel:+919149979837">+91 91499 79837</a></td><td>सेक्टर 40</td></tr>
+      </table>
+    </section>
+
+    <section id="pharmacy">
+      <h2>नज़दीकी फार्मेसी खोजें</h2>
+      <input type="text" id="locationInput" placeholder="अपना क्षेत्र दर्ज करें" style="padding:10px; width:100%; border-radius:5px; border:none;">
+      <button onclick="searchPharmacy()">खोजें</button>
+      <br><br>
+      <iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius:10px;" allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <section id="faq">
+      <h2>क्या आपके पास प्रश्न हैं?</h2>
+      <p>नीचे अपने प्रश्न भेजें:</p>
+      <a class="faq-link" href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">प्रश्न पूछें</a>
+    </section>
+
+    <section id="survey">
+      <h2>हमारे सर्वेक्षण में भाग लें</h2>
+      <p>READ THE ROOM पहल में शामिल हों।</p>
+      <a class="survey-link" href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">अभी शामिल हों</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 READ THE ROOM | मोबाइल संस्करण</p>
+  </footer>
+</body>
+</html>
