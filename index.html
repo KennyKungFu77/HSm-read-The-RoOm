@@ -1,273 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>READ THE ROOM - First Aid Awareness</title>
   <style>
-    /* ======== GENERAL STYLES ======== */
-    body {
+    /* General Reset */
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Roboto", Arial, sans-serif;
       background-color: #0f0f0f;
-      color: #f1f1f1;
+      color: #fff;
+      display: flex;
+      min-height: 100vh;
     }
 
-    a {
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #181818;
+      padding-top: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      border-right: 1px solid #222;
+    }
+
+    .sidebar h2 {
+      color: #ff0000;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #ddd;
+      padding: 12px 20px;
       text-decoration: none;
-      color: inherit;
+      font-weight: 500;
+      transition: 0.3s;
     }
 
-    h2 {
-      color: #ffffff;
-      margin-bottom: 15px;
+    .sidebar a:hover {
+      background-color: #333;
+      color: #fff;
     }
 
-    /* ======== TOP NAVBAR ======== */
+    /* Main content */
+    .main {
+      margin-left: 240px;
+      flex: 1;
+    }
+
+    /* Top bar */
     header {
+      background-color: #202020;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #202020;
-      padding: 10px 20px;
+      border-bottom: 1px solid #222;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
-    header img {
-      height: 40px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .logo img {
+      height: 35px;
     }
 
     .search-bar {
+      flex: 1;
       display: flex;
-      align-items: center;
-      width: 50%;
+      justify-content: center;
+      gap: 5px;
     }
 
     .search-bar input {
-      width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #303030;
+      width: 60%;
+      padding: 8px;
       background-color: #121212;
+      border: 1px solid #333;
       color: #fff;
-      border-radius: 2px 0 0 2px;
+      border-radius: 2px;
     }
 
     .search-bar button {
-      background-color: #303030;
+      background-color: #333;
       border: none;
-      padding: 8px 12px;
+      color: #fff;
+      padding: 8px 15px;
       cursor: pointer;
+      border-radius: 2px;
     }
 
     .search-bar button:hover {
-      background-color: #383838;
+      background-color: #444;
     }
 
-    .nav-icons {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .nav-icons span {
-      font-size: 20px;
+    .lang-btn {
+      background-color: #ff0000;
+      border: none;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 4px;
       cursor: pointer;
+      font-weight: 500;
     }
 
-    /* ======== SIDEBAR ======== */
-    .sidebar {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      width: 220px;
-      background-color: #202020;
-      height: 100vh;
-      padding-top: 20px;
-      overflow-y: auto;
+    .lang-btn:hover {
+      background-color: #e60000;
     }
 
-    .sidebar a {
-      display: block;
-      padding: 12px 25px;
-      color: #f1f1f1;
-      font-size: 14px;
+    /* Sections */
+    section {
+      padding: 30px;
+      border-bottom: 1px solid #222;
     }
 
-    .sidebar a:hover {
-      background-color: #383838;
+    section h2 {
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 15px;
     }
 
-    /* ======== MAIN CONTENT ======== */
-    main {
-      margin-left: 240px;
-      padding: 20px;
+    section p {
+      margin-bottom: 20px;
+      color: #ccc;
     }
 
-    /* ======== VIDEO GRID ======== */
+    /* Video Grid */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
 
     .video-card {
       background-color: #181818;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 10px;
+      border-radius: 8px;
+      transition: transform 0.2s;
     }
 
     .video-card:hover {
       transform: scale(1.03);
-      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
     }
 
     iframe {
       width: 100%;
       height: 180px;
-      border: none;
+      border-radius: 8px;
     }
 
-    .video-info {
-      padding: 10px;
-    }
-
-    .video-info h3 {
+    .video-card h3 {
+      margin-top: 10px;
       font-size: 16px;
-      margin-bottom: 6px;
       color: #fff;
     }
 
-    /* ======== TABLE ======== */
+    /* Table */
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #181818;
-      margin-top: 15px;
-      border-radius: 8px;
-      overflow: hidden;
+      color: #ddd;
     }
 
-    th, td {
-      border-bottom: 1px solid #303030;
-      padding: 10px;
-      text-align: left;
+    th,
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
     }
 
     th {
       background-color: #202020;
+      color: #ff4c4c;
     }
 
-    /* ======== PHARMACY SEARCH ======== */
+    tr:hover {
+      background-color: #1f1f1f;
+    }
+
+    /* Pharmacy Input */
     input[type="text"] {
       padding: 10px;
-      background-color: #121212;
-      color: white;
-      border: 1px solid #333;
-      border-radius: 4px;
       width: 60%;
+      max-width: 400px;
+      background: #121212;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 4px;
     }
 
-    button {
-      background-color: #cc0000;
-      color: white;
+    button.search {
+      background: #ff0000;
       border: none;
+      color: white;
       padding: 10px 15px;
       border-radius: 4px;
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #ff0000;
+    button.search:hover {
+      background: #e60000;
     }
 
     iframe#mapFrame {
-      border: none;
-      border-radius: 10px;
-      margin-top: 10px;
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 8px;
+      margin-top: 20px;
     }
 
-    /* ======== FOOTER ======== */
+    /* Links */
+    .faq-link,
+    .survey-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff0000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .faq-link:hover,
+    .survey-link:hover {
+      background-color: #e60000;
+    }
+
+    /* Footer */
     footer {
-      background-color: #202020;
-      color: #ccc;
+      background: #181818;
+      color: #aaa;
       text-align: center;
       padding: 15px;
-      margin-top: 30px;
+      font-size: 14px;
     }
 
-    footer p {
-      margin: 0;
-      font-size: 14px;
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .main {
+        margin-left: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP NAVBAR -->
-  <header>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <img src="logo.png" alt="READ THE ROOM">
-       <button onclick="window.location.href='hindi.html'" style="margin-top:15px; padding:10px 20px; background:#f39c12; color:white; border:none; border-radius:6px; cursor:pointer;"> हिंदी में देखें </button>
-    </div>
-
-    <div class="search-bar">
-      <input type="text" placeholder="Search first-aid topics...">
-      <button>🔍</button>
-    </div>
-
-    <div class="nav-icons">
-      <span>📹</span>
-      <span>🔔</span>
-      <span>👤</span>
-    </div>
-  </header>
-
-  <!-- SIDEBAR -->
-  <nav class="sidebar">
-    <a href="#videos">🏠 Home</a>
-    <a href="#delivery">🚴 Delivery Boys</a>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>READ THE ROOM</h2>
+    <a href="#videos">🎥 First Aid Videos</a>
+    <a href="#delivery">🚴‍♂️ Delivery Boys</a>
     <a href="#pharmacy">💊 Pharmacy Finder</a>
     <a href="#faq">❓ FAQs</a>
     <a href="#survey">📝 Survey</a>
-  </nav>
+  </div>
 
-  <!-- MAIN CONTENT -->
-  <main>
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="logo.png" alt="Logo" />
+        READ THE ROOM
+      </div>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search videos or help..." />
+        <button>🔍</button>
+      </div>
+
+      <button class="lang-btn" onclick="window.location.href='hindi.html'">हिंदी में देखें</button>
+    </header>
+
+    <!-- Videos -->
     <section id="videos">
-      <h2>First-Aid Video Library</h2>
+      <h2>First Aid Video Library</h2>
       <p>Learn how to act in emergencies with these quick guides:</p>
-
       <div class="video-grid">
         <div class="video-card">
           <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
-          <div class="video-info"><h3>CPR (Cardiac Arrest)</h3></div>
+          <h3>CPR (Cardiac Arrest)</h3>
         </div>
         <div class="video-card">
           <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
-          <div class="video-info"><h3>Burns</h3></div>
+          <h3>Burns</h3>
         </div>
         <div class="video-card">
           <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
-          <div class="video-info"><h3>Cuts & Bleeding</h3></div>
+          <h3>Cuts & Bleeding</h3>
         </div>
         <div class="video-card">
           <iframe src="https://www.youtube.com/embed/PA9hpOnvtCk" allowfullscreen></iframe>
-          <div class="video-info"><h3>Choking</h3></div>
+          <h3>Choking</h3>
         </div>
         <div class="video-card">
           <iframe src="https://www.youtube.com/embed/owXhSD7XwUk" allowfullscreen></iframe>
-          <div class="video-info"><h3>Seizures</h3></div>
+          <h3>Seizures</h3>
         </div>
         <div class="video-card">
           <iframe src="https://www.youtube.com/embed/PmmhxW0vVXA" allowfullscreen></iframe>
-          <div class="video-info"><h3>Nosebleeds</h3></div>
+          <h3>Nosebleeds</h3>
         </div>
       </div>
     </section>
 
+    <!-- Delivery -->
     <section id="delivery">
       <h2>Nearby Pharmaceutical Delivery Boys</h2>
       <p>Contact them to fetch medicines or medical equipment:</p>
@@ -279,43 +340,44 @@
       </table>
     </section>
 
+    <!-- Pharmacy -->
     <section id="pharmacy">
       <h2>Find Nearest Pharmacy</h2>
-      <input type="text" id="locationInput" placeholder="Enter your area or city">
-      <button onclick="searchPharmacy()">Search</button>
-      <iframe id="mapFrame" width="100%" height="400" loading="lazy"></iframe>
+      <p>Enter your location to find pharmacies nearby:</p>
+      <input type="text" id="locationInput" placeholder="Enter your area or city" />
+      <button class="search" onclick="searchPharmacy()">Search</button>
+      <iframe id="mapFrame" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
+    <script>
+      function searchPharmacy() {
+        const location = document.getElementById("locationInput").value;
+        if (location.trim() === "") {
+          alert("Please enter your location.");
+          return;
+        }
+        const mapSrc = "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
+        document.getElementById("mapFrame").src = mapSrc;
+      }
+    </script>
+
+    <!-- FAQ -->
     <section id="faq">
       <h2>Have Questions?</h2>
-      <a href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">
-        <button>Ask a Question</button>
-      </a>
+      <p>Submit your queries, and we’ll answer them on our blog.</p>
+      <a class="faq-link" href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">Ask a Question</a>
     </section>
 
+    <!-- Survey -->
     <section id="survey">
       <h2>Take Part in Our Survey</h2>
-      <a href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">
-        <button>Be a part of READ THE ROOM</button>
-      </a>
+      <p>We want to know you better.</p>
+      <a class="survey-link" href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">Be a part of READ THE ROOM</a>
     </section>
-  </main>
 
-  <footer>
-    <p>© 2025 READ THE ROOM | Created for First-Aid Awareness</p>
-  </footer>
-
-  <script>
-    function searchPharmacy() {
-      let location = document.getElementById("locationInput").value;
-      if(location.trim() === "") {
-        alert("Please enter your location.");
-        return;
-      }
-      let mapSrc = "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
-      document.getElementById("mapFrame").src = mapSrc;
-    }
-  </script>
-
+    <footer>
+      © 2025 READ THE ROOM | Created for First-Aid Awareness
+    </footer>
+  </div>
 </body>
 </html>
