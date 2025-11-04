@@ -1,383 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>READ THE ROOM - First Aid Awareness</title>
   <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* ======= GLOBAL STYLES ======= */
     body {
+      margin: 0;
       font-family: "Roboto", Arial, sans-serif;
       background-color: #0f0f0f;
-      color: #fff;
-      display: flex;
-      min-height: 100vh;
+      color: #f1f1f1;
     }
 
-    /* Sidebar */
-    .sidebar {
-      width: 240px;
-      background-color: #181818;
-      padding-top: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      overflow-y: auto;
-      border-right: 1px solid #222;
-    }
-
-    .sidebar h2 {
-      color: #ff0000;
-      font-size: 20px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .sidebar a {
-      display: block;
-      color: #ddd;
-      padding: 12px 20px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .sidebar a:hover {
-      background-color: #333;
-      color: #fff;
-    }
-
-    /* Main content */
-    .main {
-      margin-left: 240px;
-      flex: 1;
-    }
-
-    /* Top bar */
+    /* ======= HEADER ======= */
     header {
-      background-color: #202020;
-      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #222;
+      padding: 10px 20px;
+      background-color: #202020;
+      border-bottom: 1px solid #333;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 10;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .logo img {
-      height: 35px;
+    header img {
+      height: 40px;
     }
 
     .search-bar {
-      flex: 1;
       display: flex;
+      align-items: center;
+      flex: 1;
       justify-content: center;
-      gap: 5px;
+      gap: 8px;
     }
 
     .search-bar input {
-      width: 60%;
-      padding: 8px;
-      background-color: #121212;
+      width: 50%;
+      padding: 8px 10px;
       border: 1px solid #333;
+      border-radius: 20px;
+      background-color: #121212;
       color: #fff;
-      border-radius: 2px;
-    }
-
-    .search-bar button {
-      background-color: #333;
-      border: none;
-      color: #fff;
-      padding: 8px 15px;
-      cursor: pointer;
-      border-radius: 2px;
-    }
-
-    .search-bar button:hover {
-      background-color: #444;
     }
 
     .lang-btn {
-      background-color: #ff0000;
+      padding: 8px 15px;
+      background-color: #cc0000;
       border: none;
+      border-radius: 20px;
       color: #fff;
-      padding: 8px 16px;
-      border-radius: 4px;
       cursor: pointer;
-      font-weight: 500;
+      font-weight: bold;
     }
-
     .lang-btn:hover {
       background-color: #e60000;
     }
 
-    /* Sections */
-    section {
-      padding: 30px;
-      border-bottom: 1px solid #222;
+    /* ======= MAIN LAYOUT ======= */
+    main {
+      display: flex;
     }
 
-    section h2 {
-      font-size: 22px;
+    /* Sidebar */
+    nav {
+      width: 220px;
+      background-color: #181818;
+      height: calc(100vh - 60px);
+      padding: 20px 10px;
+      position: sticky;
+      top: 60px;
+    }
+
+    nav a {
+      display: block;
+      padding: 10px 15px;
       color: #fff;
-      margin-bottom: 15px;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-bottom: 5px;
     }
 
-    section p {
-      margin-bottom: 20px;
-      color: #ccc;
+    nav a:hover {
+      background-color: #333;
     }
 
-    /* Video Grid */
+    /* Content area */
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    /* ======= VIDEO GRID ======= */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-    }
-
-    .video-card {
-      background-color: #181818;
-      padding: 10px;
-      border-radius: 8px;
-      transition: transform 0.2s;
-    }
-
-    .video-card:hover {
-      transform: scale(1.03);
     }
 
     iframe {
       width: 100%;
       height: 180px;
-      border-radius: 8px;
+      border-radius: 10px;
+      border: none;
     }
 
-    .video-card h3 {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #fff;
-    }
-
-    /* Table */
+    /* ======= TABLE ======= */
     table {
       width: 100%;
       border-collapse: collapse;
-      color: #ddd;
+      margin-top: 20px;
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
-    th,
-    td {
+    th, td {
       padding: 12px;
-      border-bottom: 1px solid #333;
+      text-align: left;
     }
 
     th {
-      background-color: #202020;
-      color: #ff4c4c;
-    }
-
-    tr:hover {
-      background-color: #1f1f1f;
-    }
-
-    /* Pharmacy Input */
-    input[type="text"] {
-      padding: 10px;
-      width: 60%;
-      max-width: 400px;
-      background: #121212;
-      border: 1px solid #333;
+      background-color: #272727;
       color: #fff;
-      border-radius: 4px;
     }
 
-    button.search {
-      background: #ff0000;
-      border: none;
+    tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+
+    a {
+      color: #00bfff;
+    }
+
+    /* ======= BUTTONS ======= */
+    button, .faq-link, .survey-link {
+      background-color: #cc0000;
       color: white;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button.search:hover {
-      background: #e60000;
-    }
-
-    iframe#mapFrame {
-      width: 100%;
-      height: 400px;
-      border: 0;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-
-    /* Links */
-    .faq-link,
-    .survey-link {
-      display: inline-block;
-      margin-top: 15px;
       padding: 10px 20px;
-      background-color: #ff0000;
-      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
       text-decoration: none;
-      border-radius: 4px;
-      font-weight: 500;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    button:hover, .faq-link:hover, .survey-link:hover {
+      background-color: #ff0000;
     }
 
-    .faq-link:hover,
-    .survey-link:hover {
-      background-color: #e60000;
-    }
-
-    /* Footer */
     footer {
-      background: #181818;
-      color: #aaa;
       text-align: center;
+      background: #181818;
+      color: #999;
       padding: 15px;
-      font-size: 14px;
+      margin-top: 40px;
     }
 
+    /* ======= RESPONSIVE ======= */
     @media (max-width: 768px) {
-      .sidebar {
+      nav {
         display: none;
       }
-      .main {
-        margin-left: 0;
+      main {
+        flex-direction: column;
+      }
+      .search-bar input {
+        width: 70%;
       }
     }
   </style>
+
+  <script>
+    // Redirect to mobile version for smaller screens
+    if (window.innerWidth < 768) {
+      window.location.href = "mobile.html";
+    }
+  </script>
 </head>
+
 <body>
+  <header>
+    <img src="logo.png" alt="READ THE ROOM Logo">
+    <div class="search-bar">
+      <input type="text" placeholder="Search first-aid topics...">
+    </div>
+    <button class="lang-btn" onclick="window.location.href='index_hi.html'">हिंदी में देखें</button>
+  </header>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>READ THE ROOM</h2>
-    <a href="#videos">🎥 First Aid Videos</a>
-    <a href="#delivery">🚴‍♂️ Delivery Boys</a>
-    <a href="#pharmacy">💊 Pharmacy Finder</a>
-    <a href="#faq">❓ FAQs</a>
-    <a href="#survey">📝 Survey</a>
-  </div>
+  <main>
+    <!-- Sidebar -->
+    <nav>
+      <a href="#videos">First Aid Videos</a>
+      <a href="#delivery">Delivery Boys</a>
+      <a href="#pharmacy">Pharmacy Finder</a>
+      <a href="#faq">FAQs</a>
+      <a href="#survey">Survey</a>
+    </nav>
 
-  <!-- Main Content -->
-  <div class="main">
-    <!-- Header -->
-    <header>
-      <div class="logo">
-        <img src="logo.png" alt="Logo" />
-        READ THE ROOM
-      </div>
-
-      <div class="search-bar">
-        <input type="text" placeholder="Search videos or help..." />
-        <button>🔍</button>
-      </div>
-
-      <button class="lang-btn" onclick="window.location.href='hindi.html'">हिंदी में देखें</button>
-    </header>
-
-    <!-- Videos -->
-    <section id="videos">
-      <h2>First Aid Video Library</h2>
-      <p>Learn how to act in emergencies with these quick guides:</p>
-      <div class="video-grid">
-        <div class="video-card">
-          <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
-          <h3>CPR (Cardiac Arrest)</h3>
+    <!-- Main Content -->
+    <div class="content">
+      <section id="videos">
+        <h2>First-Aid Video Library</h2>
+        <p>Learn how to act in emergencies with these quick guides:</p>
+        <div class="video-grid">
+          <div>
+            <h3>CPR (Cardiac Arrest)</h3>
+            <iframe src="https://www.youtube.com/embed/Plse2FOkV4Q" allowfullscreen></iframe>
+          </div>
+          <div>
+            <h3>Burns</h3>
+            <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
+          </div>
+          <div>
+            <h3>Cuts & Bleeding</h3>
+            <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
+          </div>
+          <div>
+            <h3>Choking</h3>
+            <iframe src="https://www.youtube.com/embed/PA9hpOnvtCk" allowfullscreen></iframe>
+          </div>
+          <div>
+            <h3>Seizures</h3>
+            <iframe src="https://www.youtube.com/embed/owXhSD7XwUk" allowfullscreen></iframe>
+          </div>
+          <div>
+            <h3>Nosebleeds</h3>
+            <iframe src="https://www.youtube.com/embed/PmmhxW0vVXA" allowfullscreen></iframe>
+          </div>
         </div>
-        <div class="video-card">
-          <iframe src="https://www.youtube.com/embed/XJGPzl3ENKo" allowfullscreen></iframe>
-          <h3>Burns</h3>
-        </div>
-        <div class="video-card">
-          <iframe src="https://www.youtube.com/embed/9XpJZv_YsGM" allowfullscreen></iframe>
-          <h3>Cuts & Bleeding</h3>
-        </div>
-        <div class="video-card">
-          <iframe src="https://www.youtube.com/embed/PA9hpOnvtCk" allowfullscreen></iframe>
-          <h3>Choking</h3>
-        </div>
-        <div class="video-card">
-          <iframe src="https://www.youtube.com/embed/owXhSD7XwUk" allowfullscreen></iframe>
-          <h3>Seizures</h3>
-        </div>
-        <div class="video-card">
-          <iframe src="https://www.youtube.com/embed/PmmhxW0vVXA" allowfullscreen></iframe>
-          <h3>Nosebleeds</h3>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Delivery -->
-    <section id="delivery">
-      <h2>Nearby Pharmaceutical Delivery Boys</h2>
-      <p>Contact them to fetch medicines or medical equipment:</p>
-      <table>
-        <tr><th>Name</th><th>Phone</th><th>Area</th></tr>
-        <tr><td>Rohit Sharma</td><td><a href="tel:+917717581632">+91 77175 81632</a></td><td>Sector 33, Chandigarh</td></tr>
-        <tr><td>Aman Verma</td><td><a href="tel:+918288892288">+91 82888 92288</a></td><td>Sector 22, Chandigarh</td></tr>
-        <tr><td>Sandeep Singh</td><td><a href="tel:+919149979837">+91 91499 79837</a></td><td>Sector 40, Chandigarh</td></tr>
-      </table>
-    </section>
+      <section id="delivery">
+        <h2>Nearby Pharmaceutical Delivery Boys</h2>
+        <table>
+          <tr><th>Name</th><th>Phone</th><th>Area</th></tr>
+          <tr><td>Rohit Sharma</td><td><a href="tel:+917717581632">+91 77175 81632</a></td><td>Sector 33, Chandigarh</td></tr>
+          <tr><td>Aman Verma</td><td><a href="tel:+918288892288">+91 82888 92288</a></td><td>Sector 22, Chandigarh</td></tr>
+          <tr><td>Sandeep Singh</td><td><a href="tel:+919149979837">+91 91499 79837</a></td><td>Sector 40, Chandigarh</td></tr>
+        </table>
+      </section>
 
-    <!-- Pharmacy -->
-    <section id="pharmacy">
-      <h2>Find Nearest Pharmacy</h2>
-      <p>Enter your location to find pharmacies nearby:</p>
-      <input type="text" id="locationInput" placeholder="Enter your area or city" />
-      <button class="search" onclick="searchPharmacy()">Search</button>
-      <iframe id="mapFrame" allowfullscreen="" loading="lazy"></iframe>
-    </section>
+      <section id="pharmacy">
+        <h2>Find Nearest Pharmacy</h2>
+        <p>Enter your location to find pharmacies nearby:</p>
+        <input type="text" id="locationInput" placeholder="Enter your area or city"
+               style="padding:10px; width:70%; max-width:400px; border-radius:5px; border:none;">
+        <button onclick="searchPharmacy()">Search</button>
+        <br><br>
+        <iframe id="mapFrame" width="100%" height="400" style="border:0; border-radius:8px;" allowfullscreen loading="lazy"></iframe>
+      </section>
 
-    <script>
-      function searchPharmacy() {
-        const location = document.getElementById("locationInput").value;
-        if (location.trim() === "") {
-          alert("Please enter your location.");
-          return;
+      <script>
+        function searchPharmacy() {
+          const location = document.getElementById("locationInput").value.trim();
+          if (!location) {
+            alert("Please enter your location.");
+            return;
+          }
+          document.getElementById("mapFrame").src =
+            "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
         }
-        const mapSrc = "https://www.google.com/maps?q=pharmacy+near+" + encodeURIComponent(location) + "&output=embed";
-        document.getElementById("mapFrame").src = mapSrc;
-      }
-    </script>
+      </script>
 
-    <!-- FAQ -->
-    <section id="faq">
-      <h2>Have Questions?</h2>
-      <p>Submit your queries, and we’ll answer them on our blog.</p>
-      <a class="faq-link" href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">Ask a Question</a>
-    </section>
+      <section id="faq">
+        <h2>Have Questions?</h2>
+        <p>Submit your queries, and we’ll answer them on our blog.</p>
+        <a class="faq-link" href="https://forms.gle/GoFTscjnN6xioEDD9" target="_blank">Ask a Question</a>
+      </section>
 
-    <!-- Survey -->
-    <section id="survey">
-      <h2>Take Part in Our Survey</h2>
-      <p>We want to know you better.</p>
-      <a class="survey-link" href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">Be a part of READ THE ROOM</a>
-    </section>
+      <section id="survey">
+        <h2>Take Part in Our Survey</h2>
+        <p>We want to know you better.</p>
+        <a class="survey-link" href="https://forms.gle/GWhcxCmWAsgvJyRs6" target="_blank">Be a part of READ THE ROOM</a>
+      </section>
+    </div>
+  </main>
 
-    <footer>
-      © 2025 READ THE ROOM | Created for First-Aid Awareness
-    </footer>
-  </div>
+  <footer>
+    <p>© 2025 READ THE ROOM | Created for First-Aid Awareness</p>
+  </footer>
 </body>
 </html>
